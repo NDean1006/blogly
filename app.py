@@ -1,9 +1,9 @@
 from flask import Flask, redirect, render_template, flash, session, request
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
 """ Blogly application """
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///Blogly_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///Blogly'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "gettimjiggywithit9999999"
 app.config['SQLALCHEMY_ECHO'] = True
