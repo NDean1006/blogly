@@ -1,6 +1,6 @@
 from unittest import TestCase
 from app import app
-from models import db, Users
+from models import db, User
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///Blogly_db_test'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
