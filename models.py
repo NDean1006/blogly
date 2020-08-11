@@ -68,3 +68,40 @@ class Post(db.Model):
         """Return nicely-formatted date."""
 
         return self.created_at.strftime(" %a %X %x")
+
+class PostTag(db.Model):
+    """ Joins Posts and tags """
+
+    __tablename__ = "post_tags"
+
+    def __repr__(self):
+       pt = self
+       return f"<PostTag  post_id={pt.post_id} tag_id={pt.tag_id} >"
+
+    post_id =  db.Column(db.Integer,
+                    db.ForeignKey("posts.id"),
+                    primary_key=True)
+    tag_id = db.Column(db.Integer,
+                    db.ForeignKey("tags.id"),
+                    primary_key=True )
+
+class Tag(db.Model):
+    """ Tag Model """
+
+    __tablename__ = "tags"
+
+    def __repr__(self):
+       t = self
+       return f"<Tag  id={t.id} name={t.name} >"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False, unique=True)
+
+    posts = db.relationship(
+        'Post',
+        secondary="post_tags",
+        cascade="all,delete",
+        backref="tags",
+    )
+
+
